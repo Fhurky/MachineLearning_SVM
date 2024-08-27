@@ -8,3 +8,5 @@ Created on Tue Aug 27 22:58:25 2024
 import pandas as pd
 
 data = pd.read_csv("UniversalBank.csv")
+
+data = data.drop(["ID"], axis = 1)
