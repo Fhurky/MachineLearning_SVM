@@ -5,14 +5,20 @@ Created on Tue Aug 27 22:58:25 2024
 @author: furko
 """
 
-import pandas as pd
+import kagglehub
 
-data = pd.read_csv("UniversalBank.csv")
+kagglehub.login()
 
-data = data.drop(["ID"], axis = 1)
+# Replace with path to directory containing model files.
+LOCAL_MODEL_DIR = 'path/to/files'
 
-Y_personal_loan = data.iloc[:,8:9]
-Y_Securities_Account = data.iloc[:,9:10]
-Y_CD_account = data.iloc[:,10:11]
-Y_Online = data.iloc[:,11:12]
-Y_Credit_card = data.iloc[:,12:13]
+MODEL_SLUG = 'my_model' # Replace with model slug.
+
+# Learn more about naming model variations at
+# https://www.kaggle.com/docs/models#name-model.
+VARIATION_SLUG = 'default' # Replace with variation slug.
+
+kagglehub.model_upload(
+  handle = f"furkankoal/{MODEL_SLUG}/keras/{VARIATION_SLUG}",
+  local_model_dir = LOCAL_MODEL_DIR,
+  version_notes = 'Update 2024-08-28')
